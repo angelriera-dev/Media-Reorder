@@ -3,7 +3,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from dates import get_date, format_date
+from dates import get_photo_date, format_date
 from search import find_images
 
 
@@ -13,23 +13,24 @@ def copy_photos(source_dir, output_dir):
 
     for filepath in find_images(source_dir):
         filename = os.path.basename(filepath)
-        date = get_date(filepath)
+        date_info = get_photo_date(filepath)
 
-        if not date:
+        if not date_info:
             print(f"⚠ No se pudo determinar fecha para: {filename}")
             continue
+            
+        year, month, day, source = date_info
+        print(f"  ✓ Encontrada vía [{source}]: {year}-{month:02d}-{day:02d}")
 
-        day_str, month_name = format_date(*date)
+        day_str, month_name = format_date(year, month, day)
         if not day_str:
             continue
-
-        year = date[0]
-        month = date[1]
+            
         target_dir = os.path.join(
             output_dir, str(year), f"{month:02d}-{month_name}", day_str
         )
         Path(target_dir).mkdir(parents=True, exist_ok=True)
-
+        
         target_path = os.path.join(target_dir, filename)
         if os.path.exists(target_path):
             name, ext = os.path.splitext(filename)
