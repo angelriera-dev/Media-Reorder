@@ -1,23 +1,19 @@
-phase: spec
+phase: design
 change: gui-media-organizer
-status: spec_complete
-updated: 2026-07-17
+status: design_complete
+updated: 2026-07-18
 
 phases_complete:
   explore: false
   propose: true
   spec: true
-  design: false
+  design: true
   tasks: false
   apply: false
   verify: false
   archive: false
 
 delivery_phases:
-  - phase: 0
-    scope: CLI + SQLite capture + batch exiftool + Google JSON sidecar
-    stack: Python
-    status: pending
   - phase: 1
     scope: GUI shell + file tree + detail panel
     stack: Tauri + Rust
@@ -31,15 +27,13 @@ delivery_phases:
     stack: Tauri + Rust
     status: pending
   - phase: 4
-    scope: Installer wizard + onboarding for non-technical users
+    scope: Polish + installer wizard + onboarding
     stack: Tauri + Rust
     status: pending
 
 specs_written:
   - architecture
-  - file-discovery
   - media-viewer
   - file-tree
   - tags
   - backup
-  - google-drive-import

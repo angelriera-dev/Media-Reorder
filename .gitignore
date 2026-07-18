@@ -11,4 +11,5 @@ wheels/
 
 order/
 .alt/
-test/src/
+test*/src/
+test*/reorder/

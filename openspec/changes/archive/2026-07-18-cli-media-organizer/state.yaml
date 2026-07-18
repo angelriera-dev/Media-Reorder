@@ -1,0 +1,25 @@
+phase: archive
+change: cli-media-organizer
+status: archived
+updated: 2026-07-18
+
+phases_complete:
+  explore: true
+  propose: true
+  spec: true
+  design: true
+  tasks: true
+  apply: true
+  verify: true
+  archive: true
+
+delivery_phases:
+  - phase: 0
+    scope: CLI + SQLite capture + batch exiftool + Google JSON sidecar
+    stack: Python
+    status: pending
+
+specs_written:
+  - architecture
+  - file-discovery
+  - google-drive-import
