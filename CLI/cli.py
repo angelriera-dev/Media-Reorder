@@ -1,4 +1,5 @@
 """CLI entry point for reorder."""
+
 import argparse
 from pathlib import Path
 
@@ -10,14 +11,13 @@ def main():
     parser = argparse.ArgumentParser(description="Organize photos by date")
     parser.add_argument(
         "source_dir",
-        nargs="?",
-        default="/respaldo",
-        help="Directory to scan (default: /respaldo)",
+        help="Directory to scan (REQUIRED)",
     )
     parser.add_argument(
-        "-o", "--output",
-        default="./order",
-        help="Output directory (default: ./order)",
+        "-o",
+        "--output",
+        default=str(Path.home() / "MEDIA_order"),
+        help="Output directory (default: ~/MEDIA_order)",
     )
     args = parser.parse_args()
 
@@ -25,16 +25,19 @@ def main():
         source = validate_source_path(args.source_dir)
     except ValueError as e:
         print(f"Error: {e}")
+        print("\nUsage: reorder <source_dir> [-o <output_dir>]")
+        print("  source_dir: Path to scan (REQUIRED)")
+        print(f"  output_dir: Path for organized media (default: ~/MEDIA_order)")
         return 1
 
     # Default output dir
     output_dir = Path(args.output).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
-    
+
     # DB in target dir
     db_path = output_dir / "reorder.db"
     conn = get_db(db_path)
-    
+
     print(f"Scanning {source}...")
     copied = copy_photos(source, str(output_dir), conn=conn)
     print(f"\n{len(copied)} files copied to {args.output}")
