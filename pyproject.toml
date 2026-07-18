@@ -1,7 +1,17 @@
 [project]
 name = "reorder"
 version = "0.1.0"
-description = "Add your description here"
+description = "CLI photo organizer with metadata caching and Google Takeout support"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = []
+
+[project.scripts]
+reorder = "CLI.cli:main"
+
+[tool.uv]
+dev-dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
