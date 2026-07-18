@@ -6,6 +6,14 @@ Build a desktop GUI application using Tauri + Rust + Svelte/HTML5. Define IPC co
 
 ## Architecture Decisions
 
+### Decision: CLI Compatibility
+**Choice**: GUI must enforce identical argument structure as CLI (mandatory source, dynamic output path).
+**Rationale**: Consistency of user experience between modes.
+
+### Decision: Content-Based Deduplication
+**Choice**: GUI will query `copy_history` SHA256 column before initiating copies.
+**Rationale**: Prevent redundant storage of identical files identified by content hash, not just path.
+
 ### Decision: Tauri Framework
 **Choice**: Use Tauri with Rust backend and HTML5 frontend.
 **Alternatives considered**: PyQt6, Electron.

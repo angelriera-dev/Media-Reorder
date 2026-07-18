@@ -27,10 +27,12 @@ Chain strategy: pending
 
 - [ ] 3.1 RED: `tests/test_bundled_binary.py::test_bundled_binary_path_resolution` — assert bundled path used, not PATH
 - [ ] 3.2 RED: `tests/test_backup.py::test_backup_repo_not_inside_output` — assert repo path outside `~/reorder`
-- [ ] 3.3 Scaffold `app/src-tauri/` — `Cargo.toml` (tauri + rusqlite), `tauri.conf.json`, `src/main.rs`
-- [ ] 3.4 Create `app/src-tauri/src/db.rs` — `include_str!` schema embed, `list_history`, `get_file_detail` queries
-- [ ] 3.5 Create `app/src-tauri/src/commands.rs` — IPC: `list_history`, `get_file_detail`, `assign_tag`, `delete_source`, `create_snapshot`, `restore_snapshot`
-- [ ] 3.6 Create `app/src/index.html` + JS — file tree panel, detail panel, `<img>`/`<video>` media viewer
+- [ ] 3.3 Implement CLI-compatible path resolution in GUI (mandatory source, dynamic target)
+- [ ] 3.4 Implement SHA256-based deduplication check via `copy_history`
+- [ ] 3.5 Scaffold `app/src-tauri/` — `Cargo.toml` (tauri + rusqlite), `tauri.conf.json`, `src/main.rs`
+- [ ] 3.6 Create `app/src-tauri/src/db.rs` — `include_str!` schema embed, `list_history`, `get_file_detail` queries
+- [ ] 3.7 Create `app/src-tauri/src/commands.rs` — IPC: `list_history`, `get_file_detail`, `assign_tag`, `delete_source`, `create_snapshot`, `restore_snapshot`
+- [ ] 3.8 Create `app/src/index.html` + JS — file tree panel, detail panel, `<img>`/`<video>` media viewer
 
 ## Phase 4: Cleanup
 
