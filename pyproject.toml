@@ -9,8 +9,13 @@ dependencies = []
 [project.scripts]
 reorder = "CLI.cli:main"
 
+[tool.hatch.build.targets.wheel]
+packages = ["CLI"]
+
 [tool.uv]
-dev-dependencies = []
+dev-dependencies = [
+    "pytest>=9.1.1",
+]
 
 [build-system]
 requires = ["hatchling"]

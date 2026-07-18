@@ -9,12 +9,12 @@ class TestInvalidSourcePath(unittest.TestCase):
     """2.1 — assert error on path traversal attempts."""
 
     def test_rejects_traversal(self):
-        from reorder.organize import validate_source_path
+        from CLI.organize import validate_source_path
         with self.assertRaises(ValueError):
             validate_source_path("../../etc/passwd")
 
     def test_rejects_absolute_traversal(self):
-        from reorder.organize import validate_source_path
+        from CLI.organize import validate_source_path
         with self.assertRaises(ValueError):
             validate_source_path("/tmp/../../etc/shadow")
 
@@ -25,7 +25,7 @@ class TestShellMetachar(unittest.TestCase):
     def test_no_shell_true_in_copy(self):
         """organize.copy_photos must not use shell=True in subprocess calls."""
         import inspect
-        from reorder.organize import copy_photos
+        from CLI.organize import copy_photos
         src = inspect.getsource(copy_photos)
         # Direct check: no shell=True in the function source
         self.assertNotIn("shell=True", src)
@@ -35,7 +35,7 @@ class TestDeleteOnHashMismatch(unittest.TestCase):
     """2.3 — assert delete blocked when SHA-256 differs."""
 
     def test_mismatch_aborts_delete(self):
-        from reorder.organize import verify_and_delete
+        from CLI.organize import verify_and_delete
         tmp = tempfile.mkdtemp()
         try:
             src = os.path.join(tmp, "src.jpg")
