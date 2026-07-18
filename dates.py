@@ -57,7 +57,7 @@ def _from_metadata(filepath):
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=5)
         for line in result.stdout.splitlines():
             date = _parse_date_string(line)
-            if date:
+            if date and _is_reasonable_date(date):
                 print(f"  [EXIF tag match]: {line.strip()} → {date}")
                 return date
     except Exception as e:
