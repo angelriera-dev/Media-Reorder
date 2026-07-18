@@ -1,0 +1,34 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Python 3.13 (current MVP), target rewrite Rust + Tauri
+  Architecture: CLI tool → Desktop GUI application
+  Testing: stdlib unittest (current), no test framework declared
+  Style: stdlib-only, zero deps preferred for MVP; Tauri/Rust for GUI target
+
+rules:
+  proposal:
+    - Include rollback plan: MVP Python path always remains as fallback
+    - Evaluate language per capability, not globally
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+    - Each requirement must be independently testable
+  design:
+    - Include architecture decision records (ADR) for language choice
+    - Document OS-specific paths explicitly (Windows vs Linux/macOS)
+  tasks:
+    - Group by phase: core engine, GUI shell, features
+    - Keep tasks completable in one session
+  apply:
+    guidelines:
+      - Follow existing code patterns for Python MVP
+      - For Tauri: Rust backend + HTML/CSS/JS frontend
+    tdd: false
+    test_command: "python test/test_integrity.py"
+  verify:
+    test_command: "python test/test_integrity.py"
+    build_command: ""
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas
